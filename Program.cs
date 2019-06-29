@@ -224,6 +224,7 @@ namespace DateTimesHomeworks
             DateTime data2 = new DateTime(2001, 02, 28);
             TimeSpan interval = data2 - data1;
             Console.WriteLine($" Difference between {data2} and {data1} is {interval.Days} days");
+
         }
 
         //16.Write a program to select all the Sundays of a specified year and display their dates
