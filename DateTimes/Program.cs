@@ -40,8 +40,7 @@ namespace DateTimesHomeworks
             Interval();
             Sundays();
             */
-            FirstMonday();
-
+            Console.WriteLine($"The date for the first Monday of the week 50 is {FirstMonday()}");
         }
 
         public static void InfoDates()
@@ -204,15 +203,7 @@ namespace DateTimesHomeworks
             }
         }
 
-        //14. Write a program to find the date of the first Monday of a given week
-        //Input  : 2015, 50
-        // Output : Mon Dec 14 00:00:00 2015      
-        public static void FirstMonday()
-        {
-            int year = 2015;
-            int weekOfYear = 50;
-
-        }
+        
 
         //15.Write a program to get days between two dates.
         //Input :2000,2,2
@@ -224,6 +215,7 @@ namespace DateTimesHomeworks
             DateTime data2 = new DateTime(2001, 02, 28);
             TimeSpan interval = data2 - data1;
             Console.WriteLine($" Difference between {data2} and {data1} is {interval.Days} days");
+
         }
 
         //16.Write a program to select all the Sundays of a specified year and display their dates
@@ -248,6 +240,28 @@ namespace DateTimesHomeworks
                 }
             }
             Console.ReadLine();
+        }
+
+        //14. Write a program to find the date of the first Monday of a given week
+        //Input  : 2015, 50
+        // Output : Mon Dec 14 00:00:00 2015      
+
+        static DateTime FirstMonday()
+        {
+            int year = 2015;
+            int weekOfYear = 50;
+            DateTime jan1 = new DateTime(year, 1, 1);
+            int days = DayOfWeek.Thursday - jan1.DayOfWeek;
+            DateTime firstMonday = jan1.AddDays(days);
+            var calendar = CultureInfo.CurrentCulture.Calendar;
+            int firstWeek = calendar.GetWeekOfYear(firstMonday, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
+            var weekNum = weekOfYear;
+            if (firstWeek == 1)
+            {
+                weekNum -= 1;
+            }
+            var result = firstMonday.AddDays(weekNum * 7);
+            return result.AddDays(+4);
         }
     }
 }
